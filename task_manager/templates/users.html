@@ -1,0 +1,35 @@
+{% extends 'basic.html' %}
+
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <h1 class="my-4">{{ Description }}</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th>ID</th>
+            <th>Имя пользователя</th>
+            <th>Полное имя</th>
+            <th>Дата создания</th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td>1</td>
+            <td>123</td>
+            <td>1234 123111</td>
+            <td>29.01.2023 17:48</td>
+            <td>
+              <a href="#">Изменить</a>
+              <br>
+              <a href="#">Удалить</a>
+            </td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
