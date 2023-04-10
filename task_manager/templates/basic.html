@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <title>
-        {% block title %}{% endblock %}
+        {% trans "Task Manager" %}
     </title>
 </head>
 
@@ -20,36 +20,36 @@
     <header>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
-          <a class="navbar-brand" href="/">Менеджер задач</a>
+          <a class="navbar-brand" href="/">{% trans "Task Manager" %}</a>
           <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarToggleExternalContent">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'user' %}">Пользователи</a>
+                <a class="nav-link" href="{% url 'users_home' %}">{% trans "Users" %}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Статусы</a>
+                <a class="nav-link" href="#">{% trans "Status" %}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Метки</a>
+                <a class="nav-link" href="#">{% trans "Labels" %}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Задачи</a>
+                <a class="nav-link" href="#">{% trans "Tasks" %}</a>
               </li>
 
             </ul>
             <ul class="navbar-nav">
 
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Вход</a>
+                  <a class="nav-link" href="#">{% trans "Log In" %}Вход</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Регистрация</a>
+                  <a class="nav-link" href="#">{% trans "Sign Up" %}Регистрация</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Выход</a>
+                  <a class="nav-link" href="#">{% trans "Log Out" %}Выход</a>
                 </li>
 
             </ul>
