@@ -24,7 +24,7 @@ migrate:
 	@poetry makemigrations
 	@poetry migrate
 
-messages:
+messages: #подготовить файл
 		poetry run django-admin makemessages -l ru
 compilemess:
 		poetry run django-admin compilemessages
