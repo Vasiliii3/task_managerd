@@ -4,7 +4,7 @@ install:
 	poetry install
 
 dev:
-	@poetry runserver
+	@$(MANAGE) runserver
 
 PORT ?= 8000
 start:
@@ -21,10 +21,10 @@ lint:
 .PHONY: install test lint selfcheck check build
 
 migrate:
-	@poetry makemigrations
-	@poetry migrate
+	@$(MANAGE) makemigrations
+	@$(MANAGE) migrate
 
-messages: #подготовить файл
+inter_rep:
 		poetry run django-admin makemessages -l ru
-compilemess:
+inter_compil:
 		poetry run django-admin compilemessages
