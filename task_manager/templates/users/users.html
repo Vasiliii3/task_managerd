@@ -17,17 +17,19 @@
             </tr>
         </thead>
         <tbody>
+        {% for user in users %}
             <tr>
-            <td>1</td>
-            <td>123</td>
-            <td>1234 123111</td>
-            <td>29.01.2023 17:48</td>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.first_name }} {{ user.last_name }}</td>
+            <td>{{ user.date_joined }}</td>
             <td>
-              <a href="#">{% trans "Change" %}</a>
+              <a href="{%url 'users_update' user.id %}">{% trans "Change" %}</a>
               <br>
-              <a href="#">{% trans "Delete" %}</a>
+              <a href="{%url 'users_delete' user.id %}">{% trans "Delete" %}</a>
             </td>
             </tr>
+        {% endfor %}
         </tbody>
     </table>
 {% endblock %}
