@@ -9,11 +9,15 @@
     </h1>
 
     <div class="card">
-      <div class="card-body p-5 bg-light">
-        <div class="display-4">Привет от Хекслета!</div>
-        <p class="lead">Практические курсы по программированию</p>
-        <hr>
-        <a class="btn btn-primary btn-lg" href="https://ru.hexlet.io">Узнать больше</a>
-      </div>
+        <div class="card-body p-5 bg-light">
+            {% if user.is_authenticated %}
+                <div class="display-4">Привет {{ user.username }}</div>
+            {% else %}
+                <div class="display-4">Привет от Хекслета!</div>
+                <p class="lead">Практические курсы по программированию</p>
+                <hr>
+                <a class="btn btn-primary btn-lg" href="https://ru.hexlet.io">Узнать больше</a>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}
