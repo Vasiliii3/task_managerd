@@ -24,7 +24,7 @@ migrate:
 	@$(MANAGE) makemigrations
 	@$(MANAGE) migrate
 
-inter_rep:
+inter_one_rep:
 		poetry run django-admin makemessages -l ru
-inter_compil:
+inter_two_compil:
 		poetry run django-admin compilemessages
