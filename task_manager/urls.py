@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name="home.html"), name='home'),
     path('users/', include('task_manager.users.urls')),
+    path('labels/', include('task_manager.labels.urls')),
     path('logout/', LogoutUserView.as_view(), name='logout'),
 ]

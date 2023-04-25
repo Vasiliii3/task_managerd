@@ -1,0 +1,33 @@
+{% extends 'basic.html' %}
+
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block content %}
+    <h1 class="my-4">{{ Description }}</h1>
+    <a class="nav-link" href="{%url 'lablels_creaate' %}">{% trans "Create label" %}</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th>ID</th>
+            <th>{% trans "Name" %}</th>
+            <th>{% trans "Creation date" %}</th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for label in labels %}
+            <tr>
+            <td>{{ label.id }}</td>
+            <td>{{ label.name }}</td>
+            <td>{{ label.created_at|date:"d.m.Y H:i" }}</td>
+            <td>
+              <a href="{%url 'lablels_update' label.id %}">{% trans "Change" %}</a>
+              <br>
+              <a href="{%url 'lablels_delete' label.id %}">{% trans "Delete" %}</a>
+            </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
