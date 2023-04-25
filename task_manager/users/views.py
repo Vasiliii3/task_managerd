@@ -6,7 +6,8 @@ from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from task_manager.users.models import CustomUser
 from task_manager.users.forms import SignUpForm
 from django.utils.translation import gettext_lazy as _
-from task_manager.mixins import CustomLoginRequiredMixin, EditOwnAccountRequiredMixin
+from task_manager.mixins import CustomLoginRequiredMixin, \
+    EditOwnAccountRequiredMixin, RelatedObjectDeleteMixin
 
 
 # Create your views here.
@@ -41,12 +42,12 @@ class LoginUserView(SuccessMessageMixin, LoginView):
     }
 
 
-class ClassMixins(SuccessMessageMixin, CustomLoginRequiredMixin, EditOwnAccountRequiredMixin):
+class UserMixins(SuccessMessageMixin, CustomLoginRequiredMixin, EditOwnAccountRequiredMixin):
     model = CustomUser
     success_url = reverse_lazy('users_home')
 
 
-class UpdateUserView(ClassMixins, UpdateView):
+class UpdateUserView(UserMixins, UpdateView):
     form_class = SignUpForm
     template_name = 'forms.html'
     success_message = _("User is successfully updated")
@@ -56,7 +57,10 @@ class UpdateUserView(ClassMixins, UpdateView):
     }
 
 
-class DeleteUserView(ClassMixins, DeleteView):
+class DeleteUserView(UserMixins, RelatedObjectDeleteMixin, DeleteView):
+    message = _("Unable to delete a user because he is being used")
+    redirection = reverse_lazy('users_home')
+
     template_name = 'users/delete.html'
     success_message = _("User is successfully deleted")
     context_object_name = 'user'
