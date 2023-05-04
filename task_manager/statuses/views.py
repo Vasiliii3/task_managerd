@@ -7,9 +7,6 @@ from task_manager.mixins import CustomLoginRequiredMixin, RelatedObjectDeleteMix
 from django.utils.translation import gettext_lazy as _
 
 
-# Create your views here.
-
-
 class StatusMixins(SuccessMessageMixin, CustomLoginRequiredMixin, ):
     model = Status
     success_url = reverse_lazy('statuses_home')
@@ -49,7 +46,7 @@ class DeleteStatusView(StatusMixins, RelatedObjectDeleteMixin, DeleteView):
     redirection = reverse_lazy('statuses_home')
 
     template_name = 'statuses/delete.html'
-    success_message = _("Label successfully deleted")
+    success_message = _("Status successfully deleted")
     context_object_name = 'status'
     extra_context = {
         'Description': _('Delete status'),
