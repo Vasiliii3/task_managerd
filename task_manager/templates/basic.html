@@ -31,13 +31,13 @@
               </li>
                 {% if user.is_authenticated %}
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'statuses_home' %}">{% trans "Status" %}</a>
+                    <a class="nav-link" href="{% url 'statuses_home' %}">{% trans "Statuses" %}</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="{% url 'lablels_home' %}">{% trans "Labels" %}</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">{% trans "Tasks" %}</a>
+                    <a class="nav-link" href="{% url 'tasks_home' %}">{% trans "Tasks" %}</a>
                   </li>
                 {% endif %}
             </ul>

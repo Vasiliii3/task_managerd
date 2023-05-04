@@ -1,0 +1,39 @@
+{% extends 'basic.html' %}
+
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block content %}
+    <h1 class="my-4">{{ Description }}</h1>
+    <a class="nav-link" href="{%url 'tasks_creaate' %}">{% trans "Create task" %}</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th>ID</th>
+            <th>{% trans "Name" %}</th>
+            <th>{% trans "Status" %}</th>
+            <th>{% trans "Author" %}</th>
+            <th>{% trans "Executor" %}</th>
+            <th>{% trans "Creation date" %}</th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+            <tr>
+            <td>{{ task.id }}</td>
+            <td><a href="{%url 'tasks_current' task.id %}">{{ task.name }}</a></td>
+            <td>{{ task.status }}</td>
+            <td>{{ task.author }}</td>
+            <td>{{ task.executor }}</td>
+            <td>{{ task.created_at|date:"d.m.Y H:i" }}</td>
+            <td>
+              <a href="{%url 'tasks_update' task.id %}">{% trans "Change" %}</a>
+              <br>
+              <a href="{%url 'tasks_delete' task.id %}">{% trans "Delete" %}</a>
+            </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

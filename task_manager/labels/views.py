@@ -51,5 +51,5 @@ class DeleteLabelsView(LabelMixins, RelatedObjectDeleteMixin, DeleteView):
     success_message = _("Label successfully deleted")
     context_object_name = 'label'
     extra_context = {
-        'Description': _('Delete user'),
+        'Description': _('Delete label'),
     }
