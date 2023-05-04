@@ -17,7 +17,7 @@ class StatusView(StatusMixins, ListView):
     context_object_name = 'statuses'
     ordering = ['id']
     extra_context = {
-        'Description': _('Status'),
+        'Description': _('Statuses'),
     }
 
 
