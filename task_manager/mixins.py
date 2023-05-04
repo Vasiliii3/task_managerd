@@ -18,7 +18,7 @@ class CustomLoginRequiredMixin(LoginRequiredMixin):
 
 
 class EditOwnAccountRequiredMixin:
-    message = _('You have no rights to change another user.')
+    message = None
 
     def dispatch(self, request, *args, **kwargs):
         user = self.request.user

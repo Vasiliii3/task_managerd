@@ -43,6 +43,7 @@ class LoginUserView(SuccessMessageMixin, LoginView):
 
 
 class UserMixins(SuccessMessageMixin, CustomLoginRequiredMixin, EditOwnAccountRequiredMixin):
+    message = _('You have no rights to change another user.')
     model = CustomUser
     success_url = reverse_lazy('users_home')
 
