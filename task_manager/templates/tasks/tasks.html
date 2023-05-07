@@ -25,7 +25,7 @@
             <td><a href="{%url 'tasks_current' task.id %}">{{ task.name }}</a></td>
             <td>{{ task.status }}</td>
             <td>{{ task.author }}</td>
-            <td>{{ task.executor }}</td>
+            <td>{% if task.executor  %} {{ task.executor }} {% else %} &nbsp; {% endif %}</td>
             <td>{{ task.created_at|date:"d.m.Y H:i" }}</td>
             <td>
               <a href="{%url 'tasks_update' task.id %}">{% trans "Change" %}</a>
