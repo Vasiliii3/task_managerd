@@ -17,8 +17,15 @@ class UsersView(ListView):
     context_object_name = 'users'
     ordering = ['id']
     extra_context = {
-        'Description': _('Create user'),
+        'Description': _('Users'),
     }
+
+    def get_queryset(self):
+        """
+        Exclude the administrator from the list
+        """
+        qs = super().get_queryset()
+        return qs.exclude(is_superuser=True)
 
 
 class CreateUserView(SuccessMessageMixin, CreateView):
@@ -29,7 +36,7 @@ class CreateUserView(SuccessMessageMixin, CreateView):
     success_message = _("Registration successful")
     extra_context = {
         'Description': _('Create user'),
-        'Button': _('Users'),
+        'Button': _('Register'),
     }
 
 
