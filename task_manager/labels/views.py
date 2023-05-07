@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from task_manager.labels.models import Label
 from task_manager.labels.forms import LabelForm
-from task_manager.mixins import CustomLoginRequiredMixin, RelatedObjectDeleteMixin
+from task_manager.mixins import CustomLoginRequiredMixin, ProtectDeleteMixin
 from django.utils.translation import gettext_lazy as _
 
 # Create your views here.
@@ -43,9 +43,9 @@ class UpdateLabelsView(LabelMixins, UpdateView):
     }
 
 
-class DeleteLabelsView(LabelMixins, RelatedObjectDeleteMixin, DeleteView):
-    message = _("It is not possible to delete a label because it is in use")
-    redirection = reverse_lazy('lablels_home')
+class DeleteLabelsView(LabelMixins, ProtectDeleteMixin, DeleteView):
+    error_message = _("It is not possible to delete a label because it is in use")
+    redirect_url = reverse_lazy('lablels_home')
 
     template_name = 'labels/delete.html'
     success_message = _("Label successfully deleted")

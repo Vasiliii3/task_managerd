@@ -1,9 +1,10 @@
 from django.contrib.messages.views import SuccessMessageMixin
+from django.db.models import ProtectedError
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from task_manager.statuses.models import Status
 from task_manager.statuses.forms import StatusForm
-from task_manager.mixins import CustomLoginRequiredMixin, RelatedObjectDeleteMixin
+from task_manager.mixins import CustomLoginRequiredMixin, ProtectDeleteMixin
 from django.utils.translation import gettext_lazy as _
 
 
@@ -41,9 +42,9 @@ class UpdateStatusView(StatusMixins, UpdateView):
     }
 
 
-class DeleteStatusView(StatusMixins, RelatedObjectDeleteMixin, DeleteView):
-    message = _("It is not possible to delete a status because it is in use")
-    redirection = reverse_lazy('statuses_home')
+class DeleteStatusView(StatusMixins, ProtectDeleteMixin, DeleteView):
+    error_message = _("It is not possible to delete a status because it is in use")
+    redirect_url = reverse_lazy('statuses_home')
 
     template_name = 'statuses/delete.html'
     success_message = _("Status successfully deleted")

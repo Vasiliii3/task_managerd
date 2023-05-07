@@ -9,7 +9,7 @@ from django.utils.translation import gettext_lazy as _
 
 class TaskMixins(SuccessMessageMixin, CustomLoginRequiredMixin, ):
     model = Task
-    success_url = reverse_lazy('statuses_home')
+    success_url = reverse_lazy('tasks_home')
 
 
 class TaskView(TaskMixins, ListView):
@@ -37,6 +37,10 @@ class CreateTaskView(TaskMixins, CreateView):
         'Description': _('Create task'),
         'Button': _('Create'),
     }
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 class UpdateTaskView(TaskMixins, UpdateView):

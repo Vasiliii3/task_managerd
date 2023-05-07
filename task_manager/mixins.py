@@ -1,9 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db import models
-from django.http import HttpResponseRedirect
+from django.db.models import ProtectedError
 from django.shortcuts import redirect
-from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 
@@ -22,19 +20,19 @@ class EditOwnAccountRequiredMixin:
 
     def dispatch(self, request, *args, **kwargs):
         user = self.request.user
-        if user.is_authenticated and user.id == int(kwargs.get('pk')):
+        if user.id == int(kwargs.get('pk')):
             return super().dispatch(request, *args, **kwargs)
         messages.error(request, self.message)
         return redirect(request.META.get('HTTP_REFERER'))
 
 
-class RelatedObjectDeleteMixin:
-    message = None
-    redirection = None
+class ProtectDeleteMixin:
+    error_message = None
+    redirect_url = None
 
-    def delete(self, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         try:
-            super().delete(*args, **kwargs)
-        except models.ProtectedError:
-            message = self.message
-            return HttpResponseRedirect(reverse(self.redirection) + f'?error={message}')
+            return super().post(request, *args, **kwargs)
+        except ProtectedError:
+            messages.error(request, self.error_message)
+            return redirect(self.redirect_url)
