@@ -17,8 +17,8 @@ class Task(models.Model):
         CustomUser, on_delete=models.PROTECT, null=True, blank=True, verbose_name=_('Executor'),
         related_name='executor')
     labels = models.ManyToManyField(
-        Label, through='TaskLabels', through_fields=('task', 'label'),
-        blank=True, verbose_name=_('Labels'), related_name='labels')
+        Label, through='TaskLabels', through_fields=('task', 'label'), blank=True,
+        verbose_name=_('Labels'), related_name='labels')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
