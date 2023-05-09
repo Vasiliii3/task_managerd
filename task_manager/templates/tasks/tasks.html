@@ -6,6 +6,19 @@
 {% block content %}
     <h1 class="my-4">{{ Description }}</h1>
     <a class="nav-link" href="{%url 'tasks_creaate' %}">{% trans "Create task" %}</a>
+
+    <div class="card mb-3">
+        <div class="card-body bg-light">
+            <a class="text-dark text-sm mb-1" href="{% url 'tasks_home' %}">x {% trans "Clear Filters" %} </a>
+            <form class="form-horizontal center" method="get">
+                {% bootstrap_form filter.form layout='horizontal' %}
+                <div class="form-group">
+                    <input class="btn btn-primary" type="submit" value="{% trans "Show" %}">
+                </div>
+            </form>
+        </div>
+    </div>
+
     <table class="table table-striped">
         <thead>
             <tr>
@@ -37,3 +50,6 @@
         </tbody>
     </table>
 {% endblock %}
+
+
+

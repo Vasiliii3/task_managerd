@@ -1,10 +1,12 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from django_filters.views import FilterView
 from task_manager.tasks.models import Task
 from task_manager.tasks.forms import TaskForm
 from task_manager.mixins import CustomLoginRequiredMixin, EditOwnAccountRequiredMixin
 from django.utils.translation import gettext_lazy as _
+from task_manager.tasks.filters import TaskFilter
 
 
 class TaskMixins(SuccessMessageMixin, CustomLoginRequiredMixin, ):
@@ -12,10 +14,11 @@ class TaskMixins(SuccessMessageMixin, CustomLoginRequiredMixin, ):
     success_url = reverse_lazy('tasks_home')
 
 
-class TaskView(TaskMixins, ListView):
+class TaskView(TaskMixins, FilterView):
     template_name = 'tasks/tasks.html'
     context_object_name = 'tasks'
     ordering = ['id']
+    filterset_class = TaskFilter
     extra_context = {
         'Description': _('Tasks'),
     }
