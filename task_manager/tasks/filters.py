@@ -15,7 +15,7 @@ class TaskFilter(django_filters.FilterSet):
         model = Task
         fields = ['status', 'executor', 'labels', 'is_author']
 
-    def filter_is_author(self, queryset, value):
+    def filter_is_author(self, queryset, name, value):
         if value:
             return queryset.filter(author=self.request.user)
         return queryset
