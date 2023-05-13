@@ -3,36 +3,20 @@
     "model": "users.customuser",
     "pk": 1,
     "fields": {
-        "password": "pbkdf2_sha256$390000$U62QN9sSeTvJ5JmDwLyOP4$0zKUi/YnUe1Sz0/96WM5LOuJfK9A0dr7nbnFT/Y37Ow=",
-        "last_login": "2023-05-08T14:39:29.344Z",
-        "is_superuser": false,
+        "password": "as11",
         "username": "vadsa",
         "first_name": "Иван",
         "last_name": "Петров",
-        "email": "",
-        "is_staff": false,
-        "is_active": true,
-        "date_joined": "2023-05-08T14:36:18.206Z",
-        "groups": [],
-        "user_permissions": []
     }
 },
 {
     "model": "users.customuser",
     "pk": 2,
     "fields": {
-        "password": "pbkdf2_sha256$390000$Kq8vWxrwFUI6dtbOdCk8dg$/WbkZ1aMJpBSV7SXYpQZ8NT4O5ZKJ7DY7PXg4hqVzfg=",
-        "last_login": "2023-05-08T14:37:18.318Z",
-        "is_superuser": false,
+        "password": "12da1",
         "username": "vero",
         "first_name": "Вероника",
         "last_name": "Устинова",
-        "email": "",
-        "is_staff": false,
-        "is_active": true,
-        "date_joined": "2023-05-08T14:37:03.901Z",
-        "groups": [],
-        "user_permissions": []
     }
 }
 ]
