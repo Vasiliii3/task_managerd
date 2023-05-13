@@ -1,4 +1,3 @@
-from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
@@ -36,15 +35,6 @@ class CreateUserView(SuccessMessageMixin, CreateView):
     extra_context = {
         'Description': _('Create user'),
         'Button': _('Register'),
-    }
-
-
-class LoginUserView(SuccessMessageMixin, LoginView):
-    template_name = 'forms.html'
-    success_message = _('You are logged in!')
-    extra_context = {
-        'Description': _('Log In'),
-        'Button': _('Enter'),
     }
 
 
