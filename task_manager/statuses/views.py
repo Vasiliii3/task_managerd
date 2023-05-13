@@ -1,5 +1,4 @@
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import ProtectedError
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from task_manager.statuses.models import Status
