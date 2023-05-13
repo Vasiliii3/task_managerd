@@ -26,6 +26,17 @@ class EditOwnAccountRequiredMixin:
         return redirect(request.META.get('HTTP_REFERER'))
 
 
+class EditOwnObjeRequiredMixin:
+    message = None
+
+    def dispatch(self, request, *args, **kwargs):
+        user = self.request.user
+        if user.id == self.get_object().author.id:
+            return super().dispatch(request, *args, **kwargs)
+        messages.error(request, self.message)
+        return redirect(request.META.get('HTTP_REFERER'))
+
+
 class ProtectDeleteMixin:
     error_message = None
     redirect_url = None

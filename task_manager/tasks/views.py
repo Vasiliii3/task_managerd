@@ -4,7 +4,7 @@ from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 from django_filters.views import FilterView
 from task_manager.tasks.models import Task
 from task_manager.tasks.forms import TaskForm
-from task_manager.mixins import CustomLoginRequiredMixin, EditOwnAccountRequiredMixin
+from task_manager.mixins import CustomLoginRequiredMixin, EditOwnObjeRequiredMixin
 from django.utils.translation import gettext_lazy as _
 from task_manager.tasks.filters import TaskFilter
 
@@ -56,7 +56,7 @@ class UpdateTaskView(TaskMixins, UpdateView):
     }
 
 
-class DeleteSTaskView(TaskMixins, EditOwnAccountRequiredMixin, DeleteView):
+class DeleteSTaskView(TaskMixins, EditOwnObjeRequiredMixin, DeleteView):
     message = _('A task can only be deleted by its author')
 
     template_name = 'tasks/delete.html'
