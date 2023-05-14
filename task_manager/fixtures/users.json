@@ -6,7 +6,7 @@
         "password": "as11",
         "username": "vadsa",
         "first_name": "Иван",
-        "last_name": "Петров",
+        "last_name": "Петров"
     }
 },
 {
@@ -16,7 +16,7 @@
         "password": "12da1",
         "username": "vero",
         "first_name": "Вероника",
-        "last_name": "Устинова",
+        "last_name": "Устинова"
     }
 }
 ]

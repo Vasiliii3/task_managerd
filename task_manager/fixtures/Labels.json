@@ -17,14 +17,14 @@
     "model": "labels.label",
     "pk": 4,
     "fields": {
-        "name": "Готов",
+        "name": "Готов"
     }
 },
 {
     "model": "labels.label",
     "pk": 5,
     "fields": {
-        "name": "Готов2",
+        "name": "Готов2"
     }
 }
 ]

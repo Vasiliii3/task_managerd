@@ -3,14 +3,14 @@
     "model": "statuses.status",
     "pk": 1,
     "fields": {
-        "name": "Готов",
+        "name": "Готов"
     }
 },
 {
     "model": "statuses.status",
     "pk": 2,
     "fields": {
-        "name": "Готов2",
+        "name": "Готов2"
     }
 }
 ]
