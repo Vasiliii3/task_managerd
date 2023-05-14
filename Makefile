@@ -30,4 +30,12 @@ inter_two_compil:
 		poetry run django-admin compilemessages
 
 test:
+	poetry run coverage run manage.py test
+	poetry run coverage xml
+
+see_test:
+	coverage report
+
+
+test_with_coverage:
 	@$(MANAGE) test
