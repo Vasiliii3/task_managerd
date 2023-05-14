@@ -23,7 +23,7 @@ jobs:
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
         run: |
-          make tests
+          make test
       - name: climate coverage
         uses: paambaati/codeclimate-action@v3.2.0
         env:
