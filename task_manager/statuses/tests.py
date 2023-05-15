@@ -17,7 +17,7 @@ class StatussTest(TestCase):
         self.new_status = reverse('statuses_create')
         self.login_url = reverse('users_login')
         self.name = 'статустест'
-        self.user_Statuss = {
+        self.status_data = {
             'name': self.name,
         }
 
@@ -30,7 +30,7 @@ class StatussTest(TestCase):
         self.assertRedirects(response, self.login_url)
 
     def test_status_creature(self):
-        response = self.client.post(self.new_status, data=self.user_Statuss, follow=True)
+        response = self.client.post(self.new_status, data=self.status_data, follow=True)
         self.assertEqual(response.status_code, HTTPStatus.OK)
         test_statuss = Status.objects.last()
         self.assertEqual(test_statuss.name, self.name)
@@ -39,7 +39,7 @@ class StatussTest(TestCase):
         url = reverse('statuses_update', args=[self.status1.id])
         response = self.client.get(url)
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        response = self.client.post(url, self.user_Statuss)
+        response = self.client.post(url, self.status_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         updated_Status = Status.objects.get(id=self.status1.id)
         self.assertEqual(updated_Status.name, self.name)
@@ -48,7 +48,7 @@ class StatussTest(TestCase):
         url = reverse('statuses_delete', args=[self.status1.id])
         response = self.client.get(url)
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        response = self.client.post(url, self.user_Statuss)
+        response = self.client.post(url, self.status_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         with self.assertRaises(Status.DoesNotExist):
             Status.objects.get(id=self.status1.id)

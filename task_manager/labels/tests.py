@@ -17,7 +17,7 @@ class LabelsTest(TestCase):
         self.new_label = reverse('lablels_creaate')
         self.login_url = reverse('users_login')
         self.name = 'меткатеста'
-        self.user_labels = {
+        self.label_data = {
             'name': self.name,
         }
 
@@ -30,7 +30,7 @@ class LabelsTest(TestCase):
         self.assertRedirects(response, self.login_url)
 
     def test_lables_creature(self):
-        response = self.client.post(self.new_label, data=self.user_labels, follow=True)
+        response = self.client.post(self.new_label, data=self.label_data, follow=True)
         self.assertEqual(response.status_code, HTTPStatus.OK)
         test_labels = Label.objects.last()
         self.assertEqual(test_labels.name, self.name)
@@ -39,7 +39,7 @@ class LabelsTest(TestCase):
         url = reverse('lablels_update', args=[self.label1.id])
         response = self.client.get(url)
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        response = self.client.post(url, self.user_labels)
+        response = self.client.post(url, self.label_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         updated_label = Label.objects.get(id=self.label1.id)
         self.assertEqual(updated_label.name, self.name)
@@ -48,7 +48,7 @@ class LabelsTest(TestCase):
         url = reverse('lablels_delete', args=[self.label1.id])
         response = self.client.get(url)
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        response = self.client.post(url, self.user_labels)
+        response = self.client.post(url, self.label_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         with self.assertRaises(Label.DoesNotExist):
             Label.objects.get(id=self.label1.id)
