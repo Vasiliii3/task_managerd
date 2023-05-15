@@ -15,7 +15,7 @@ class StatussTest(TestCase):
         self.Status1 = Status.objects.get(pk=1)
         self.Status2 = Status.objects.get(pk=2)
         self.home = reverse('statuses_home')
-        self.new_Status = reverse('statuses_create')
+        self.new_status = reverse('statuses_create')
         self.login_url = reverse('users_login')
         self.name = 'статустест'
         self.user_Statuss = {
@@ -31,7 +31,7 @@ class StatussTest(TestCase):
         self.assertRedirects(response, self.login_url)
 
     def test_status_creature(self):
-        response = self.client.post(self.new_Status, data=self.user_Statuss, follow=True)
+        response = self.client.post(self.new_status, data=self.user_Statuss, follow=True)
         self.assertEqual(response.status_code, HTTPStatus.OK)
         test_statuss = Status.objects.last()
         self.assertEqual(test_statuss.name, self.name)
