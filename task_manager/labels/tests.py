@@ -48,7 +48,7 @@ class LabelsTest(TestCase):
         url = reverse('lablels_delete', args=[self.label1.id])
         response = self.client.get(url)
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        response = self.client.post(url, self.label_data)
+        response = self.client.post(url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         with self.assertRaises(Label.DoesNotExist):
             Label.objects.get(id=self.label1.id)

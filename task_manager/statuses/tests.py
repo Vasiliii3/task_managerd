@@ -48,7 +48,7 @@ class StatussTest(TestCase):
         url = reverse('statuses_delete', args=[self.status1.id])
         response = self.client.get(url)
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        response = self.client.post(url, self.status_data)
+        response = self.client.post(url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         with self.assertRaises(Status.DoesNotExist):
             Status.objects.get(id=self.status1.id)
