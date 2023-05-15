@@ -13,7 +13,6 @@ class LabelsTest(TestCase):
         self.user1 = CustomUser.objects.get(pk=1)
         self.client.force_login(self.user1)
         self.label1 = Label.objects.get(pk=1)
-        self.label2 = Label.objects.get(pk=2)
         self.home = reverse('lablels_home')
         self.new_label = reverse('lablels_creaate')
         self.login_url = reverse('users_login')
