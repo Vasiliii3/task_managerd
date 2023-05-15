@@ -48,12 +48,12 @@ class UsersTest(TestCase):
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.assertRedirects(response, self.home)
 
-    def test_home(self):
+    def test_user_home(self):
         self.client.force_login(self.user1)
         response = self.client.get(self.home)
         self.assertContains(response, f'Привет {self.user1.username}')
 
-    def test_update(self):
+    def test_user_update(self):
         self.client.force_login(self.user1)
         url = reverse('users_update', args=[self.user1.id])
         response = self.client.get(url)
@@ -64,7 +64,7 @@ class UsersTest(TestCase):
         self.assertEqual(updated_user.first_name, 'Ivan')
         self.assertEqual(updated_user.last_name, 'Petrov')
 
-    def test_delete(self):
+    def test_user_delete(self):
         self.client.force_login(self.user1)
         url = reverse('users_delete', args=[self.user1.id])
         response = self.client.get(url)
