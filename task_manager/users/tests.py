@@ -10,12 +10,12 @@ class UsersTest(TestCase):
     fixtures = ['users.json']
 
     def setUp(self):
-        self.client = Client()
+        self.user_home = reverse('users_home')
+        self.client = Client(HTTP_REFERER=self.user_home,)
         self.signup_url = reverse('users_create')
         self.login_url = reverse('users_login')
         self.logout_url = reverse('logout')
         self.home = reverse('home')
-        self.user_home = reverse('users_home')
         self.username = 'test'
         self.password = 'testpass123'
         self.user_data = {
@@ -75,8 +75,7 @@ class UsersTest(TestCase):
             CustomUser.objects.get(id=self.user1.id)
 
     def test_user_no_permission_delete_page(self):
-        client = Client(HTTP_REFERER=self.user_home,)
-        client.force_login(self.user1)
+        self.client.force_login(self.user1)
         url = reverse('users_delete', args=[self.user2.id])
         response = self.client.post(url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
