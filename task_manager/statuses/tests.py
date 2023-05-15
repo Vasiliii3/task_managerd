@@ -33,8 +33,8 @@ class StatussTest(TestCase):
     def test_status_creature(self):
         response = self.client.post(self.new_Status, data=self.user_Statuss, follow=True)
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        test_Statuss = Status.objects.last()
-        self.assertEqual(test_Statuss.name, self.name)
+        test_statuss = Status.objects.last()
+        self.assertEqual(test_statuss.name, self.name)
 
     def test_status_update(self):
         url = reverse('statuses_update', args=[self.Status1.id])
